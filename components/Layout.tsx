@@ -20,7 +20,7 @@ export default function Layout({ children }: LayoutProps) {
       {/* Transparent logo background */}
       <div
         className="fixed inset-0 opacity-10 bg-no-repeat bg-center bg-contain pointer-events-none z-0"
-        style={{ backgroundImage: "url('/relaypoint-logo-transparent.png')" }}
+        style={{ backgroundImage: "url('/rwelogotransparent.png')" }}
       ></div>
 
       {/* Dark mode toggle button */}
@@ -37,3 +37,4 @@ export default function Layout({ children }: LayoutProps) {
     </div>
   );
 }
+
