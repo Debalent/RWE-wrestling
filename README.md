@@ -75,3 +75,39 @@ Welcome to the digital arena of **RWE Wrestling**—where raw, unfiltered energy
 ---
 
 ## 📁 Project Structure (Example)
+/public
+  /wrestlers           # Wrestler profile images and media assets
+  /logo                # RWE logo and branding images
+
+/pages
+  /admin               # Owner/admin dashboard and management pages
+    index.tsx          # Admin dashboard home page
+    wrestlers.tsx      # Manage wrestler profiles (CRUD interface)
+    events.tsx         # Manage upcoming events
+    media.tsx          # Media upload and archive management
+    merch.tsx          # Merchandise store management
+  
+  /events
+    upcoming.tsx       # Public upcoming events listing with maps & tickets
+    [slug].tsx         # Dynamic event detail pages
+  
+  /wrestlers
+    [slug].tsx         # Dynamic wrestler profile pages
+  
+  podcast.tsx          # Podcast episodes and backstage blog overview
+  notifications.tsx    # Notifications and campaigns management
+  rwe-homepage.tsx     # Main homepage with site overview and links
+  navbar.tsx           # Site-wide navigation bar component
+
+/components            # Reusable UI components (e.g., Navbar, EventCard, WrestlerCard)
+
+/styles                # Tailwind CSS customizations and global styles
+
+/utils                 # Utility functions and helpers (e.g., date formatting)
+
+.env                   # Environment variables (API keys, Stripe secrets, etc.)
+
+package.json           # Project metadata and dependency declarations
+next.config.js         # Next.js configuration file
+README.md              # Project overview, setup, and usage instructions
+
