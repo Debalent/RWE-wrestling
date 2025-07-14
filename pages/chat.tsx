@@ -1,61 +1,69 @@
-import React, { useState, useEffect } from "react";
-import io from "socket.io-client";
+import React, { useEffect, useState } from "react";
+import { io } from "socket.io-client";
 
-// This is a basic real-time public chat page for RWE
-// Fans can chat during live events, and owners can expand this for private rooms or DMs
-const socket = io(); // Connects to the backend Socket.IO server
+// Connect to the Socket.IO server
+const socket = io("http://localhost:3000"); // 🔧 Replace with actual server URL
 
-export default function ChatPage() {
+// Public Live Chat Room for RWE fans
+export default function LiveChatRoom() {
+  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
 
   useEffect(() => {
-    // Receive new chat messages from server
-    socket.on("chat message", (msg) => {
+    // Receive messages from the server
+    socket.on("chatMessage", (msg) => {
       setMessages((prev) => [...prev, msg]);
     });
 
     return () => {
-      socket.off("chat message");
+      socket.off("chatMessage");
     };
   }, []);
 
-  const sendMessage = (e) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-    socket.emit("chat message", input);
-    setInput("");
+  const sendMessage = () => {
+    if (!message.trim()) return;
+    const msg = {
+      user: "FanUser", // 🔧 Replace with actual user auth logic
+      text: message,
+    };
+    socket.emit("chatMessage", msg);
+    setMessage("");
   };
 
   return (
     <main className="min-h-screen bg-gray-900 text-white p-6">
-      <h1 className="text-4xl font-bold text-center text-red-600 mb-6">💬 Live RWE Chat</h1>
+      <h1 className="text-4xl font-bold text-center text-red-600 mb-6">
+        💬 RWE Live Chat Room
+      </h1>
 
-      <section className="bg-gray-800 rounded-2xl p-4 max-w-3xl mx-auto shadow-lg">
-        <div className="h-96 overflow-y-scroll border border-gray-700 rounded p-2 mb-4">
-          {messages.map((msg, idx) => (
-            <div key={idx} className="text-sm text-gray-200 mb-1">
-              {msg}
-            </div>
-          ))}
-        </div>
+      <div className="max-w-2xl mx-auto bg-gray-800 p-4 rounded-xl shadow mb-6 h-[500px] overflow-y-auto">
+        {messages.map((msg, index) => (
+          <div key={index} className="mb-3">
+            <p className="font-semibold text-red-400">{msg.user}</p>
+            <p className="text-white">{msg.text}</p>
+          </div>
+        ))}
+      </div>
 
-        <form onSubmit={sendMessage} className="flex gap-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
-            className="flex-grow p-2 rounded bg-gray-700 text-white placeholder-gray-400"
-          />
-          <button
-            type="submit"
-            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-          >
-            Send
-          </button>
-        </form>
-      </section>
+      <div className="max-w-2xl mx-auto flex gap-2">
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Type your message..."
+          className="flex-1 p-2 rounded text-black"
+        />
+        <button
+          onClick={sendMessage}
+          className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
+        >
+          Send
+        </button>
+      </div>
+
+      <p className="text-sm text-gray-400 mt-4 max-w-2xl mx-auto">
+        📌 This chat room updates in real time. Make sure the Socket.IO server is running at the backend.
+      </p>
     </main>
   );
 }
