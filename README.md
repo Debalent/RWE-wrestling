@@ -111,3 +111,30 @@ package.json           # Project metadata and dependency declarations
 next.config.js         # Next.js configuration file
 README.md              # Project overview, setup, and usage instructions
 
+---
+
+## Quick start
+
+1. Install dependencies (Node.js LTS recommended):
+
+```powershell
+npm install
+npm run dev
+```
+
+2. Open http://localhost:3000
+
+Build for production:
+
+```powershell
+npm run build
+```
+
+CI
+
+A GitHub Actions workflow is included in `.github/workflows/ci.yml` to run `npm ci` and `npm run build` on push and pull-request events.
+
+Assets
+
+Place production images under `public/images/` and update paths in pages or components if needed.
+
