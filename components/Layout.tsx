@@ -1,4 +1,5 @@
 import { useState, useEffect, ReactNode } from "react";
+import Navbar from "./Navbar";
 
 interface LayoutProps {
   children: ReactNode;
@@ -20,7 +21,7 @@ export default function Layout({ children }: LayoutProps) {
       {/* Transparent logo background */}
       <div
         className="fixed inset-0 opacity-10 bg-no-repeat bg-center bg-contain pointer-events-none z-0"
-        style={{ backgroundImage: "url('/rwelogotransparent.png')" }}
+        style={{ backgroundImage: "url('/rwe-logo.svg')" }}
       ></div>
 
       {/* Dark mode toggle button */}
@@ -32,8 +33,11 @@ export default function Layout({ children }: LayoutProps) {
         {darkMode ? "Light Mode" : "Dark Mode"}
       </button>
 
+      {/* Navbar */}
+      <Navbar />
+
       {/* Main content */}
-      <main className="relative z-10 p-4 max-w-7xl mx-auto">{children}</main>
+      <main className="relative z-10 p-6 pt-24 max-w-7xl mx-auto">{children}</main>
     </div>
   );
 }

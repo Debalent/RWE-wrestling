@@ -1,8 +1,6 @@
 import React from "react";
+import Image from "next/image";
 
-// RWE Store Page
-// Display merchandise and ticket items for sale
-// Owners can later connect this to Stripe, Snipcart, or Shopify
 export default function StorePage() {
   const items = [
     {
@@ -10,16 +8,15 @@ export default function StorePage() {
       name: "RWE Logo T-Shirt",
       price: "$25.00",
       image: "/store/shirt.jpg",
-      link: "https://buy.rwe.com/shirt"
+      link: "https://buy.rwe.com/shirt",
     },
     {
       id: 2,
       name: "Front Row Ticket - Fall Brawl",
       price: "$60.00",
       image: "/store/ticket.jpg",
-      link: "https://buy.rwe.com/fallbrawl-ticket"
-    }
-    // Add more products or tickets here
+      link: "https://buy.rwe.com/fallbrawl-ticket",
+    },
   ];
 
   return (
@@ -28,18 +25,17 @@ export default function StorePage() {
 
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {items.map((item) => (
-          <div key={item.id} className="bg-gray-800 rounded-2xl p-4 shadow-lg">
-            <img src={item.image} alt={item.name} className="rounded-xl w-full h-60 object-cover mb-4" />
-            <h2 className="text-xl font-semibold text-white">{item.name}</h2>
-            <p className="text-red-400 mb-2">{item.price}</p>
-            <a
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded mt-2"
-            >
-              Buy Now
-            </a>
+          <div key={item.id} className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+            <div className="relative h-60 w-full">
+              <Image src={item.image || '/placeholder-store.jpg'} alt={item.name} fill className="object-cover" />
+            </div>
+            <div className="p-4">
+              <h2 className="text-xl font-semibold text-white">{item.name}</h2>
+              <p className="text-red-400 mb-4">{item.price}</p>
+              <a href={item.link} target="_blank" rel="noopener noreferrer" className="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+                Buy Now
+              </a>
+            </div>
           </div>
         ))}
       </section>
