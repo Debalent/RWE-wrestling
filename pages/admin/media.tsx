@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 
 // Admin Media Manager for RWE
 // Lets owners upload and manage match photos, promos, and videos
@@ -69,18 +70,16 @@ export default function AdminMedia() {
               key={item.id}
               className="bg-gray-800 p-4 rounded-xl flex flex-col items-center"
             >
-              {item.preview.includes("video") ? (
-                <video
-                  src={item.preview}
-                  controls
-                  className="w-full rounded mb-2"
-                />
+              {String(item.preview).includes("video") ? (
+                <video src={String(item.preview)} controls className="w-full rounded mb-2" />
+              ) : String(item.preview).startsWith("blob:") ? (
+                // blob URLs can't be handled by next/image
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={String(item.preview)} alt={item.title} className="w-full rounded mb-2" />
               ) : (
-                <img
-                  src={item.preview}
-                  alt={item.title}
-                  className="w-full rounded mb-2"
-                />
+                <div className="relative w-full h-48 mb-2">
+                  <Image src={String(item.preview)} alt={item.title} fill className="object-cover rounded" />
+                </div>
               )}
               <p className="text-white mb-2">{item.title}</p>
               <button

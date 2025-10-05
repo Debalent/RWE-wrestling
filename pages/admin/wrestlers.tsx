@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 
 // Admin Wrestler Management Page
 // Lets owners add/edit/remove wrestler profiles
@@ -80,11 +81,9 @@ export default function AdminWrestlers() {
               <h3 className="text-xl font-bold text-white">{w.name}</h3>
               <p className="text-gray-300">{w.bio}</p>
             </div>
-            <img
-              src={w.imageUrl}
-              alt={w.name}
-              className="w-20 h-20 object-cover rounded-full border ml-4"
-            />
+            <div className="w-20 h-20 ml-4 relative flex-shrink-0">
+              <Image src={w.imageUrl || '/placeholder-wrestler.jpg'} alt={w.name} fill className="object-cover rounded-full border" />
+            </div>
             <button
               onClick={() => removeWrestler(w.id)}
               className="ml-4 px-3 py-1 text-sm bg-gray-700 hover:bg-red-700 rounded"

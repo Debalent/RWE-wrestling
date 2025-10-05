@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 // This is a public-facing profile page for a wrestler
 // Owners can update this info from an admin panel later
@@ -21,11 +22,15 @@ export default function WrestlerProfilePage() {
       <h1 className="text-4xl font-bold text-center text-red-600 mb-10">👊 Wrestler Profile</h1>
 
       <div className="max-w-4xl mx-auto bg-gray-800 p-6 rounded-2xl shadow-lg flex flex-col md:flex-row items-center gap-6">
-        <img
-          src={wrestler.image}
-          alt={wrestler.name}
-          className="w-64 h-64 object-cover rounded-xl shadow"
-        />
+        <div className="relative w-64 h-64 flex-shrink-0">
+          <Image
+            src={wrestler.image || '/placeholder-wrestler.jpg'}
+            alt={wrestler.name}
+            fill
+            className="object-cover rounded-xl shadow"
+            sizes="(max-width: 768px) 100vw, 256px"
+          />
+        </div>
 
         <div>
           <h2 className="text-3xl font-bold text-white mb-2">{wrestler.name}</h2>

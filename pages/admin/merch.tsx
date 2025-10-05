@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 
 // Admin Merch Manager for RWE
 // Lets owners add and manage merchandise for sale
@@ -95,11 +96,9 @@ export default function AdminMerch() {
               <h3 className="text-xl font-bold">{item.name}</h3>
               <p className="text-gray-300">${item.price} | Stock: {item.stock}</p>
             </div>
-            <img
-              src={item.imageUrl}
-              alt={item.name}
-              className="w-16 h-16 object-cover rounded border"
-            />
+            <div className="w-16 h-16 relative">
+              <Image src={item.imageUrl || '/placeholder-store.jpg'} alt={item.name} fill className="object-cover rounded border" />
+            </div>
             <button
               onClick={() => removeItem(item.id)}
               className="ml-4 px-3 py-1 text-sm bg-gray-700 hover:bg-red-700 rounded"
