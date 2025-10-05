@@ -35,7 +35,7 @@ export default function EventPage() {
             width="100%"
             height="300"
             style={{ border: 0 }}
-            allowFullScreen=""
+            allowFullScreen
             loading="lazy"
             className="rounded-xl mb-4"
           ></iframe>
