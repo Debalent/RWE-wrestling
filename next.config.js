@@ -2,8 +2,17 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    // Allow serving images from the public folder and remote patterns if needed
-    remotePatterns: [],
+    // Allow serving images from Sanity CDN and other sources
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.supabase.co',
+      },
+    ],
   },
 };
 
