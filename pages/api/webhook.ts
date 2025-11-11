@@ -4,7 +4,8 @@ import { buffer } from 'micro'
 import { supabase } from '../../lib/supabase'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2024-11-20.acacia',
+  // align with installed Stripe version
+  apiVersion: '2025-10-29.clover',
 })
 
 // Disable body parsing, need raw body for webhook verification
