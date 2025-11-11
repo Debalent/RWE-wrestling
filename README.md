@@ -4,6 +4,15 @@ Welcome to the digital arena of **RWE Wrestling**—where raw, unfiltered energy
 
 ---
 
+## One-click deploy
+
+Want to get the site live in minutes? You can import this repository directly into Vercel with one click. After import, add the environment variables described in `DEPLOYMENT_GUIDE.md` and deploy.
+
+[![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Debalent/RWE-wrestling)
+
+If you'd like, provide a Vercel team token and I can trigger a deploy and verify the production site so your mobile app shows the latest changes.
+
+
 ## 🎯 Project Goals
 - Put RWE on the map for fans across the country
 - Let owners update matches, media, merch and more—**zero coding required**
